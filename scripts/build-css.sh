@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -e
+set -x
 
 package_location="$1"
 if [ "$package_location" == "" ]; then

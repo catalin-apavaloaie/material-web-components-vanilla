@@ -42,7 +42,7 @@ class Button extends LitElement {
 
   static get styles() {
     return [
-      elementCss,
+      materialCss,
     ];
   }
 
@@ -75,13 +75,6 @@ class Button extends LitElement {
       this._mdcRipple = new MDCRipple(this.shadowRoot.getElementById('container'));
     }
   }
-
-  // disconnectedCallback() {
-  //   if (this._mdcRipple) {
-  //     this._mdcRipple = null;
-  //   }
-  //   super.disconnectedCallback();
-  // }
 
 }
 

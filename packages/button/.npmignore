@@ -1,2 +1,3 @@
 .npmignore
 material-css-files.txt
+*.tgz
