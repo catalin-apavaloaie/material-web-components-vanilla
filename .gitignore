@@ -57,5 +57,7 @@ typings/
 # next.js build output
 .next
 
-# css build files
+# packages generated files
 packages/*/material.css.js
+packages/*/node_modules
+packages/*/package-lock.json

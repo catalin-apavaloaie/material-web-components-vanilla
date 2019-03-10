@@ -19,6 +19,15 @@ class Button extends LitElement {
       raised: {
         type: Boolean,
       },
+      unelevated: {
+        type: Boolean,
+      },
+      outlined: {
+        type: Boolean,
+      },
+      dense: {
+        type: Boolean,
+      },
       disabled: {
         type: Boolean,
       },
@@ -26,7 +35,7 @@ class Button extends LitElement {
         type: Boolean,
       },
       href: {
-
+        type: String,
       },
     }
   }
@@ -40,9 +49,14 @@ class Button extends LitElement {
   render() {
     const classes = {
       'mdc-button--raised': this.raised,
-    }
+      'mdc-button--unelevated': this.unelevated,
+      'mdc-button--outlined': this.outlined,
+      'mdc-button--dense': this.dense,
+    };
     return html `
-      <button id="container" class="mdc-button ${classMap(classes)}" .disabled="${this.disabled}">
+      <button id="container" 
+          class="mdc-button ${classMap(classes)}" 
+          .disabled="${this.disabled}">
         ${this.renderLabel()}
       </button>
     `;
@@ -50,7 +64,7 @@ class Button extends LitElement {
 
   renderLabel() {
     if (this.href) {
-      return html `<a href="${this.href}"><slot></slot></a>`;
+      return html `<a class="mdc-button__label" href="${this.href}"><slot></slot></a>`;
     } else {
       return html `<span class="mdc-button__label"><slot></slot></span>`;
     }
@@ -61,6 +75,13 @@ class Button extends LitElement {
       this._mdcRipple = new MDCRipple(this.shadowRoot.getElementById('container'));
     }
   }
+
+  // disconnectedCallback() {
+  //   if (this._mdcRipple) {
+  //     this._mdcRipple = null;
+  //   }
+  //   super.disconnectedCallback();
+  // }
 
 }
 
