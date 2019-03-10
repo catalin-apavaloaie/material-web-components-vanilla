@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo 1"
+    "test": "echo 1",
+    "bootstrap": "npm install && scripts/bootstrap.sh"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dolphinkiss/material-web-components-vanilla.git"
+    "url": "https://github.com/dolphinkiss/material-web-components-vanilla.git"
   },
   "author": "Peter Lauri",
   "license": "MIT",

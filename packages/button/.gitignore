@@ -56,6 +56,3 @@ typings/
 
 # next.js build output
 .next
-
-# css build files
-packages/*/material.css.js
