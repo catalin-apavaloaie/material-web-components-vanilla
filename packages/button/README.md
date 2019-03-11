@@ -37,7 +37,7 @@ import '@dolphin-kiss/material-wc-button/mdwc-button.js'
 ### Outlined button
 
 ```html
-<mdwc-button raised>Outlined button</mdwc-button>
+<mdwc-button outlined>Outlined button</mdwc-button>
 ```
 
 ### Unelevated
