@@ -1,4 +1,5 @@
 import {
+  css,
   html,
   LitElement,
 } from 'lit-element';
@@ -43,6 +44,14 @@ class Button extends LitElement {
   static get styles() {
     return [
       materialCss,
+      css `
+        :host {
+          display: inline-flex;
+        }
+        .mdc-button {
+          width: 100%;
+        }
+      `,
     ];
   }
 
@@ -54,9 +63,7 @@ class Button extends LitElement {
       'mdc-button--dense': this.dense,
     };
     return html `
-      <button id="container" 
-          class="mdc-button ${classMap(classes)}" 
-          .disabled="${this.disabled}">
+      <button class="mdc-button ${classMap(classes)}" .disabled="${this.disabled}">
         ${this.renderLabel()}
       </button>
     `;
@@ -72,7 +79,7 @@ class Button extends LitElement {
 
   firstUpdated() {
     if (this.ripple) {
-      this._mdcRipple = new MDCRipple(this.shadowRoot.getElementById('container'));
+      this._mdcRipple = new MDCRipple(this.shadowRoot.querySelector('.mdc-button'));
     }
   }
 

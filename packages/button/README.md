@@ -7,6 +7,7 @@ Vanilla web component implementation of Material Design button using LitElement.
 ```bash
 npm install --save @dolphin-kiss/material-wc-button
 ```
+
 ## Usage
 
 Import the javascript module.

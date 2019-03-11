@@ -1,6 +1,6 @@
 {
   "name": "@dolphin-kiss/material-wc-button",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "LitElement Material design button written using javascript vanilla approach",
   "main": "mdwc-button.js",
   "scripts": {
