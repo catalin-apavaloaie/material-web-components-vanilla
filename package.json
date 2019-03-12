@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/dolphinkiss/material-web-components-vanilla/issues"
   },
-  "homepage": "https://github.com/dolphinkiss/material-web-components-vanilla#readme"
+  "homepage": "https://github.com/dolphinkiss/material-web-components-vanilla#readme",
+  "dependencies": {
+    "polyserve": "^0.27.15"
+  }
 }
