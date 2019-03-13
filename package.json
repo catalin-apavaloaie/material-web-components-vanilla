@@ -22,6 +22,7 @@
   "homepage": "https://github.com/dolphinkiss/material-web-components-vanilla#readme",
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.7",
+    "lit-element": "^2.0.1",
     "polyserve": "^0.27.15"
   }
 }
