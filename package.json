@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo 1",
-    "bootstrap": "npm install && scripts/bootstrap.sh"
+    "start": "polyserve -H 0.0.0.0",
+    "demo": "npm run bootstrap && npm run start",
+    "init": "npm install && scripts/bootstrap.sh",
+    "bootstrap": "scripts/bootstrap.sh"
   },
   "repository": {
     "type": "git",
@@ -16,5 +19,10 @@
   "bugs": {
     "url": "https://github.com/dolphinkiss/material-web-components-vanilla/issues"
   },
-  "homepage": "https://github.com/dolphinkiss/material-web-components-vanilla#readme"
+  "homepage": "https://github.com/dolphinkiss/material-web-components-vanilla#readme",
+  "dependencies": {
+    "@webcomponents/webcomponentsjs": "^2.2.7",
+    "lit-element": "^2.0.1",
+    "polyserve": "^0.27.15"
+  }
 }
