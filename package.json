@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo 1",
+    "start": "polyserve",
+    "demo": "npm run bootstrap && npm run start",
     "bootstrap": "npm install && scripts/bootstrap.sh"
   },
   "repository": {
