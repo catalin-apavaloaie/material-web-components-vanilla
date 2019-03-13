@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/dolphinkiss/material-web-components-vanilla#readme",
   "dependencies": {
+    "@webcomponents/webcomponentsjs": "^2.2.7",
     "polyserve": "^0.27.15"
   }
 }
