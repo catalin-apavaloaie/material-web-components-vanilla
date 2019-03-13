@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo 1",
-    "start": "polyserve",
+    "start": "polyserve -H 0.0.0.0",
     "demo": "npm run bootstrap && npm run start",
-    "bootstrap": "npm install && scripts/bootstrap.sh"
+    "init": "npm install && scripts/bootstrap.sh",
+    "bootstrap": "scripts/bootstrap.sh"
   },
   "repository": {
     "type": "git",
