@@ -8,7 +8,9 @@
     "start": "polyserve -H 0.0.0.0",
     "demo": "npm run bootstrap && npm run start",
     "init": "npm install && scripts/bootstrap.sh",
-    "bootstrap": "scripts/bootstrap.sh"
+    "bootstrap": "scripts/bootstrap.sh",
+    "npm-watch": "npm-watch",
+    "watch": "scripts/watch-and-bootstrap.js"
   },
   "repository": {
     "type": "git",
@@ -22,8 +24,10 @@
   "homepage": "https://github.com/dolphinkiss/material-web-components-vanilla#readme",
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.2.7",
+    "glob": "^7.1.3",
     "lit-element": "^2.0.1",
     "npm-watch": "^0.6.0",
-    "polyserve": "^0.27.15"
+    "polyserve": "^0.27.15",
+    "watch": "^1.0.2"
   }
 }
