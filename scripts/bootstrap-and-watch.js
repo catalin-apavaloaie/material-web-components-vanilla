@@ -10,6 +10,9 @@ const glob = require("glob");
 const filesToWatch = glob.sync('packages/*/{*.js,*.txt,package.json}')
   .filter(file => !file.endsWith('material.css.js'));
 
+console.log('Changes to these files will cause bootstrap for specific package.\n -', filesToWatch.join('\n - '));
+console.log('Note that if you add a file, you need to restart the watcher.');
+
 const filterFunction = (file) => {
   const fileStripped = file.replace(monitorDir + '/', '');
   if (filesToWatch.findIndex(item => item == fileStripped) > -1) {
@@ -19,8 +22,8 @@ const filterFunction = (file) => {
 }
 
 const callback = (file) => {
-  console.log('File changed:', file, filterFunction(file));
   if (!filterFunction(file)) return;
+
   const relativeFilePath = file.replace(monitorDir + '/', '');
   const relativePackagePathSplitted = relativeFilePath.split('/');
   const relativePackageDir = [relativePackagePathSplitted[0], relativePackagePathSplitted[1]].join('/');
