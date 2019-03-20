@@ -1,0 +1,26 @@
+{
+  "name": "@dolphin-kiss/material-wc-card",
+  "version": "1.0.7",
+  "description": "LitElement Material design button written using javascript vanilla approach",
+  "main": "mdwc-card.js",
+  "scripts": {
+    "test": "echo 1"
+  },
+  "author": "Peter Lauri",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@material/card": "^1.0.0",
+    "lit-element": "^2.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dolphinkiss/material-web-components-vanilla.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dolphinkiss/material-web-components-vanilla/issues"
+  },
+  "homepage": "https://github.com/dolphinkiss/material-web-components-vanilla#readme"
+}
