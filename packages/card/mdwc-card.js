@@ -30,9 +30,6 @@ class Card extends LitElement {
         :host {
           display: block;
         }
-        .mdc-button {
-          width: 100%;
-        }
       `,
     ];
   }
