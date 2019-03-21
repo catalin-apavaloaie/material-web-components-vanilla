@@ -9,7 +9,7 @@
     "demo": "npm run bootstrap && npm run start",
     "init": "npm install && scripts/bootstrap.sh",
     "bootstrap": "scripts/bootstrap.sh",
-    "watch": "scripts/bootstrap-and-watch.js"
+    "watch": "scripts/bootstrap.sh && scripts/watch.js"
   },
   "repository": {
     "type": "git",

@@ -5,6 +5,7 @@ import {
 
 import '@dolphin-kiss/material-wc-button';
 import '@dolphin-kiss/material-wc-card';
+import '@dolphin-kiss/material-wc-checkbox';
 
 class DemoApp extends LitElement {
   render() {
@@ -27,6 +28,8 @@ class DemoApp extends LitElement {
 
       <mdwc-card><h1>Normal</h1></mdwc-card>
       <mdwc-card raised><h1>Raised</h1></mdwc-card>
+      <mdwc-checkbox></mdwc-checkbox>
+      <mdwc-checkbox disabled></mdwc-checkbox>
     `;
   }
 }
