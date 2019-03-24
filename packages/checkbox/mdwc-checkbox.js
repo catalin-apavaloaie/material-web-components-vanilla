@@ -19,7 +19,10 @@ class Checkbox extends LitElement {
     return {
       disabled: {
         type: Boolean,
-      }
+      },
+      checked: {
+        type: Boolean,
+      },
     }
   }
 
@@ -45,9 +48,9 @@ class Checkbox extends LitElement {
     return html `
       <div class="mdc-checkbox ${classMap(classes)}">
         <input type="checkbox"
-              ?disabled="${this.disabled}"
               class="mdc-checkbox__native-control"
-              id="checkbox-1"/>
+              id="checkbox-1"
+              />
         <div class="mdc-checkbox__background">
           <svg class="mdc-checkbox__checkmark"
               viewBox="0 0 24 24">
@@ -62,12 +65,32 @@ class Checkbox extends LitElement {
   }
 
   firstUpdated() {
-    if (this.ripple) {
-      this._mdcCheckbox = new MDCCheckbox(this.shadowRoot.querySelector('.mdc-checkbox'));
-    }
+    this._mdcCheckbox = new MDCCheckbox(this.shadowRoot.querySelector('.mdc-checkbox'));
+    this._mdcCheckbox.disabled = this.disabled;
+    this.addEventListener('input', this._handleInputEvent, true);
   }
 
+  _handleInputEvent(e) {
+    console.log(e.path[0].checked);
+    this.checked = e.path[0].checked;
 
+    // debugger;
+  }
+
+  _handleChange(e) {
+    // let event = new Event('change', {
+    //   bubbles: true,
+    //   composed: true,
+    //   // cancelable: false,
+    // });
+    // this.dispatchEvent(event);
+    // console.log('DOLPHIN _handleChange', e, e.currentTarget);
+  }
+
+  _handleInput(e) {
+    // this.dispatchEvent(e);
+    // console.log('DOLPHIN _handleInput', e, e.currentTarget);
+  }
 
 }
 
