@@ -13,23 +13,36 @@ import {
   materialCss
 } from './material.css.js';
 
+/*
+TODO:
+1. consider passing options as argument to the element
+*/
+
 class Select extends LitElement {
 
   static get properties() {
     return {
+      value: {
+        type: String,
+      },
+      _options: {
+        type: Array,
+      },
+
+      // TODO: implement
       outlined: {
         type: Boolean,
       },
       disabled: {
         type: Boolean,
       },
-      checked: {
-        type: Boolean,
-      },
-      _options: {
-        type: Array,
-      },
+
     }
+  }
+
+  constructor() {
+    super();
+    this._options = [];
   }
 
   static get styles() {
@@ -65,11 +78,6 @@ class Select extends LitElement {
     `;
   }
 
-  constructor() {
-    super();
-    this._options = [];
-  }
-
   renderFirstOption() {
     return html `<option value="" .disabled="${this.disabled}" selected></option>`;
   }
@@ -97,13 +105,11 @@ class Select extends LitElement {
     let select = new MDCSelect(this.shadowRoot.querySelector('.mdc-select'));
     this._mdcSelect = select;
     select.listen('MDCSelect:change', () => {
-      console.log(`Selected option at index ${select.selectedIndex} with value "${select.value}"`);
+      this.value = select.value;
+      // TODO: dispatch value/change event?
     });
 
     let slot = this.shadowRoot.querySelector('slot');
-    console.log('asdfasdfasdf', slot.assignedNodes());
-
-    // console.log(slot);
     slot.addEventListener('slotchange', (e) => {
       this._options = slot.assignedElements()
         .map((element) => {

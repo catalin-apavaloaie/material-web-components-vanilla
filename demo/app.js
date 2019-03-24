@@ -35,7 +35,7 @@ class DemoApp extends LitElement {
         <mdwc-checkbox name="blablabla" value="checked" @change="${this._handleChange}" @input="${this._handleInput}"></mdwc-checkbox>
         <button type="submit">Submit</button>
       </form>
-      <mdwc-select id="select1">
+      <mdwc-select>
         <option value="grains">
           Bread, Cereal, Rice, and Pasta
         </option>
