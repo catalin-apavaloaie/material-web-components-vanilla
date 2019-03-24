@@ -1,0 +1,26 @@
+{
+  "name": "@dolphin-kiss/material-wc-select",
+  "version": "1.0.7",
+  "description": "LitElement Material design select written using javascript vanilla approach",
+  "main": "mdwc-select.js",
+  "scripts": {
+    "test": "echo 1"
+  },
+  "author": "Peter Lauri",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@material/select": "^1.0.0",
+    "lit-element": "^2.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dolphinkiss/material-web-components-vanilla.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dolphinkiss/material-web-components-vanilla/issues"
+  },
+  "homepage": "https://github.com/dolphinkiss/material-web-components-vanilla#readme"
+}

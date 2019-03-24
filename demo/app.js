@@ -6,6 +6,7 @@ import {
 import '@dolphin-kiss/material-wc-button';
 import '@dolphin-kiss/material-wc-card';
 import '@dolphin-kiss/material-wc-checkbox';
+import '@dolphin-kiss/material-wc-select';
 
 class DemoApp extends LitElement {
   render() {
@@ -34,7 +35,33 @@ class DemoApp extends LitElement {
         <mdwc-checkbox name="blablabla" value="checked" @change="${this._handleChange}" @input="${this._handleInput}"></mdwc-checkbox>
         <button type="submit">Submit</button>
       </form>
+      <mdwc-select id="select1">
+        <option value="grains">
+          Bread, Cereal, Rice, and Pasta
+        </option>
+        <option value="vegetables">
+          Vegetables
+        </option>
+        <option value="fruit">
+          Fruit
+        </option>
+      </mdwc-select>
     `;
+  }
+
+  firstUpdated() {
+    // this._appendOptionToSelect('select1');
+  }
+
+  _appendOptionToSelect(selectId) {
+    // window.setInterval(() => {
+    //   // console.log('hello');
+    //   let option = document.createElement('option');
+    //   option.value = 'optionvalue';
+    //   option.innerHTML = 'optiontext';
+    //   this.shadowRoot.getElementById(selectId)
+    //     .append(option);
+    // }, 1000);
   }
 
   _handleChange(e) {
