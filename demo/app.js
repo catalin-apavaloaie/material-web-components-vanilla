@@ -65,7 +65,7 @@ class DemoApp extends LitElement {
         </option>
       </mdwc-select>
 
-      <mdwc-select label="Super long long super label something!" @change="${this._handleChange}" @input="${this._handleInput}">
+      <mdwc-select outlined label="Super long long super label something!" @change="${this._handleChange}" @input="${this._handleInput}">
         <option value="grains">
           Bread
         </option>

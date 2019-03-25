@@ -155,7 +155,7 @@ class Select extends LitElement {
   }
 
   renderLabel() {
-    if (this.label) {
+    if (this.label && !this.outlined) {
       return html `<label class="mdc-floating-label">${this.label}</label>`;
     } else {
       return html ``;
