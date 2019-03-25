@@ -169,31 +169,38 @@ class Select extends LitElement {
   // ?
   // }
 
+
   firstUpdated() {
     let select = new MDCSelect(this.shadowRoot.querySelector('.mdc-select'));
     this._mdcSelect = select;
-    select.listen('MDCSelect:change', () => {
-      this.value = select.value;
+    select.listen('MDCSelect:change', (e) => {
+      console.log(e);
+      this.value = e.detail.value;
       // TODO: dispatch value/change event?
     });
 
+
+
+
+    let slot = this.shadowRoot.querySelector('slot');
     this.setSlotOptions(slot);
     slot.addEventListener('slotchange', (e) => {
-     this.setSlotOptions(slot);
+      this.setSlotOptions(slot);
     });
   }
-  
+
   setSlotOptions(slot) {
-    let options = slot.assignedElements ? slot.assignedElements() : slot.assignedNodes().filter(node => {
-       return node.nodeType == Node.ELEMENT_NODE;
-     });
-     this._options = options
-       .map((element) => {
-         return {
-           value: element.value,
-           label: element.innerHTML,
-         };
-       });
+    let options = slot.assignedElements ? slot.assignedElements() : slot.assignedNodes()
+      .filter(node => {
+        return node.nodeType == Node.ELEMENT_NODE;
+      });
+    this._options = options
+      .map((element) => {
+        return {
+          value: element.value,
+          label: element.innerHTML,
+        };
+      });
   }
 
 
