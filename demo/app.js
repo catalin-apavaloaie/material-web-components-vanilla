@@ -16,6 +16,16 @@ class DemoApp extends LitElement {
         mdwc-card {
           margin-bottom: 16px;
         }
+
+        mdwc-select {
+          width: 300px;
+        }
+
+        select {
+          width: 100px;
+        }
+
+
       </style>
 
       <h1>mdwc-button</h1>
@@ -30,12 +40,20 @@ class DemoApp extends LitElement {
       <mdwc-card><h1>Normal</h1></mdwc-card>
       <mdwc-card raised><h1>Raised</h1></mdwc-card>
       <mdwc-checkbox disabled></mdwc-checkbox>
-      <form id="native-form" @submit="${this._nativeFormSubmit}">
-        <input value="pjotr" type="checkbox" name="native" @change="${this._handleChange}" @input="${this._handleInput}">
-        <mdwc-checkbox name="blablabla" value="checked" @change="${this._handleChange}" @input="${this._handleInput}"></mdwc-checkbox>
-        <button type="submit">Submit</button>
-      </form>
-      <mdwc-select>
+
+      <select>
+      <option value="grains">
+          Bread, Cereal, Rice, and Pasta
+        </option>
+        <option value="vegetables">
+          Vegetables
+        </option>
+        <option value="fruit">
+          Fruit
+        </option>
+      </select>
+
+      <mdwc-select label="What do you want?" @change="${this._handleChange}" @input="${this._handleInput}">
         <option value="grains">
           Bread, Cereal, Rice, and Pasta
         </option>
@@ -46,6 +64,19 @@ class DemoApp extends LitElement {
           Fruit
         </option>
       </mdwc-select>
+
+      <mdwc-select label="Super long long super label something!" @change="${this._handleChange}" @input="${this._handleInput}">
+        <option value="grains">
+          Bread
+        </option>
+        <option value="vegetables">
+          Vegetables
+        </option>
+        <option value="fruit">
+          Fruit
+        </option>
+      </mdwc-select>
+
     `;
   }
 

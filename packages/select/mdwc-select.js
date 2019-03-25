@@ -3,9 +3,9 @@ import {
   html,
   LitElement,
 } from 'lit-element';
-// import {
-//   classMap
-// } from 'lit-html/directives/class-map.js';
+import {
+  classMap
+} from 'lit-html/directives/class-map.js';
 import {
   MDCSelect,
 } from '@material/select/index.js';
@@ -23,6 +23,9 @@ class Select extends LitElement {
   static get properties() {
     return {
       value: {
+        type: String,
+      },
+      label: {
         type: String,
       },
       _options: {
@@ -43,18 +46,25 @@ class Select extends LitElement {
   constructor() {
     super();
     this._options = [];
+    this._primaryColor = window.getComputedStyle(document.documentElement)
+      .getPropertyValue('--mdc-theme-primary')
+      .trim()
+      .replace('#', '');
+    console.log('this._primaryColor', this._primaryColor);
+    this._iconSvg =
+      "data:image/svg+xml;charset=utf-8,%3Csvg width='10' height='5' viewBox='7 10 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23" +
+      this._primaryColor + "' fill-rule='evenodd' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E";
   }
 
   static get styles() {
     return [
       materialCss,
       css `
-        slot {
-          display: none;
-        }
       `,
     ];
   }
+
+
 
   render() {
     const classes = {
@@ -65,17 +75,67 @@ class Select extends LitElement {
       // 'mdc-button--dense': this.dense,
     };
     return html `
-      <div class="mdc-select">
+      <style>
+
+        slot {
+          display: none;
+        }
+
+        :host {
+          display: inline-block;
+        }
+
+        .mdc-select {
+          width: 100%;
+        }
+
+        label {
+          max-width: calc(100% - 48px);
+        }
+
+        .mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-floating-label {
+          color: var(--mdc-theme-primary) !important;
+        }
+
+        .mdc-select--focused .mdc-select__dropdown-icon {
+          background: url("${this._iconSvg}") no-repeat center !important;
+        }
+
+
+
+
+        
+
+      </style>
+      <div class="mdc-select ${classMap(classes)}">
         <i class="mdc-select__dropdown-icon"></i>
         <select class="mdc-select__native-control">
           ${this.renderFirstOption()}
           ${this.renderOptionList()}
         </select>
-        <label class="mdc-floating-label">Pick a Food Group</label>
-        <div class="mdc-line-ripple"></div>
+        ${this.renderLabel()}
+        ${this.renderRippleOrOutline()}
       </div>
       <slot></slot>
     `;
+  }
+
+  renderRippleOrOutline() {
+    if (this.outlined) {
+      return html `
+        <div class="mdc-notched-outline">
+          <div class="mdc-notched-outline__leading"></div>
+          <div class="mdc-notched-outline__notch">
+            <label class="mdc-floating-label">Pick a Food Group</label>
+          </div>
+          <div class="mdc-notched-outline__trailing"></div>
+        </div>
+      `;
+    } else {
+      return html `
+        <div class="mdc-line-ripple"></div>
+      `;
+    }
   }
 
   renderFirstOption() {
@@ -92,6 +152,14 @@ class Select extends LitElement {
         ${option.label}
       </option>
     `;
+  }
+
+  renderLabel() {
+    if (this.label) {
+      return html `<label class="mdc-floating-label">${this.label}</label>`;
+    } else {
+      return html ``;
+    }
   }
 
   // constructor() {
@@ -121,14 +189,12 @@ class Select extends LitElement {
     });
   }
 
-  // connectedCallback() {
-  //   super.connectedCallback();
-  // }
 
-  // disconnectedCallback() {
-  //   // TODO: remove listener?
-  //   super.disconnectedCallback();
-  // }
+  disconnectedCallback() {
+    // TODO: remove listener?
+    super.disconnectedCallback();
+  }
+
 
 
 }
