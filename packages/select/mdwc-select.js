@@ -177,16 +177,23 @@ class Select extends LitElement {
       // TODO: dispatch value/change event?
     });
 
-    let slot = this.shadowRoot.querySelector('slot');
+    this.setSlotOptions(slot);
     slot.addEventListener('slotchange', (e) => {
-      this._options = slot.assignedElements()
-        .map((element) => {
-          return {
-            value: element.value,
-            label: element.innerHTML,
-          };
-        });
+     this.setSlotOptions(slot);
     });
+  }
+  
+  setSlotOptions(slot) {
+    let options = slot.assignedElements ? slot.assignedElements() : slot.assignedNodes().filter(node => {
+       return node.nodeType == Node.ELEMENT_NODE;
+     });
+     this._options = options
+       .map((element) => {
+         return {
+           value: element.value,
+           label: element.innerHTML,
+         };
+       });
   }
 
 
