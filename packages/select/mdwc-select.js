@@ -57,8 +57,6 @@ class Select extends LitElement {
       "data:image/svg+xml;charset=utf-8,%3Csvg width='10' height='5' viewBox='7 10 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23" +
       this._primaryColor + "' fill-rule='evenodd' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E";
 
-
-
     if (!this.keyForValue) {
       this.keyForValue = 'value';
     }
@@ -71,16 +69,25 @@ class Select extends LitElement {
     let select = new MDCSelect(this.shadowRoot.querySelector('.mdc-select'));
     this._mdcSelect = select;
     select.listen('MDCSelect:change', (e) => {
+      console.log('mdc select change', e);
       this.value = e.detail.value;
     });
   }
 
   updated(changes) {
     if (changes.has('value')) {
-      this.dispatchEvent(new CustomEvent('value-updated', {detail: {
-        value: this.value,
-        data: this.options ? this.options.find(item => item[this.keyForValue] == this.value) : null,
-      }}));
+
+      let selected = this.options.find(item => item[this.keyForValue] == this.value);
+      this.dispatchEvent(new CustomEvent('value-updated', {
+        detail: {
+          value: selected ? this.value : undefined,
+          data: selected,
+        }
+      }));
+
+      if (!selected) {
+        this.value = undefined;
+      }
     }
   }
 

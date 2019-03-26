@@ -68,6 +68,7 @@ class DemoApp extends LitElement {
         @value-updated="${this._handleValueUpdated}"
         keyForValue="uuid"
         keyForLabel="name"
+        value="somethingnotinthelist"
         .options="${[{uuid: "grains", name: "Breadz", isNice: true}, {uuid: "vegetables", name: "Vegetables", isNice: false}, {uuid: "fruit", name: "Fruit", isNice: undefined}]}">
       </mdwc-select>
 
