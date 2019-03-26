@@ -53,28 +53,22 @@ class DemoApp extends LitElement {
         </option>
       </select>
 
-      <mdwc-select label="What do you want?" @change="${this._handleChange}" @input="${this._handleInput}">
-        <option value="grains">
-          Bread, Cereal, Rice, and Pasta
-        </option>
-        <option value="vegetables">
-          Vegetables
-        </option>
-        <option value="fruit">
-          Fruit
-        </option>
+      <mdwc-select 
+        label="What do you want?"
+        @change="${this._handleChange}" 
+        @input="${this._handleInput}"
+        @value-updated="${this._handleValueUpdated}"
+        .options="${[{value: "grains", label: "Bread"}, {value: "vegetables", label: "Vegetables"}, {value: "fruit", label: "Fruit"}]}">
       </mdwc-select>
 
-      <mdwc-select outlined label="Super long long super label something!" @change="${this._handleChange}" @input="${this._handleInput}">
-        <option value="grains">
-          Bread
-        </option>
-        <option value="vegetables">
-          Vegetables
-        </option>
-        <option value="fruit">
-          Fruit
-        </option>
+      <mdwc-select outlined 
+        label="Super long long super label something!" 
+        @change="${this._handleChange}" 
+        @input="${this._handleInput}"
+        @value-updated="${this._handleValueUpdated}"
+        keyForValue="uuid"
+        keyForLabel="name"
+        .options="${[{uuid: "grains", name: "Breadz", isNice: true}, {uuid: "vegetables", name: "Vegetables", isNice: false}, {uuid: "fruit", name: "Fruit", isNice: undefined}]}">
       </mdwc-select>
 
     `;
@@ -101,6 +95,10 @@ class DemoApp extends LitElement {
 
   _handleInput(e) {
     console.log('_handleInput', e.currentTarget.checked, e.currentTarget.value, e.currentTarget);
+  }
+
+  _handleValueUpdated(e) {
+    console.log('_handleValueUpdated', e, e.detail, e.currentTarget);
   }
 
   _nativeFormSubmit(e) {
