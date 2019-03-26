@@ -13,10 +13,7 @@ import {
   materialCss
 } from './material.css.js';
 
-/*
-TODO:
-1. consider passing options as argument to the element
-*/
+
 class Select extends LitElement {
 
   static get properties() {
@@ -30,11 +27,7 @@ class Select extends LitElement {
       options: {
         type: Array,
       },
-      // TODO: implement
       outlined: {
-        type: Boolean,
-      },
-      disabled: {
         type: Boolean,
       },
       keyForLabel: {
@@ -43,20 +36,18 @@ class Select extends LitElement {
       keyForValue: {
         type: String,
       },
+
+      // TODO: implement
+      disabled: {
+        type: Boolean,
+      },
+
     }
   }
 
   constructor() {
     super();
-    this._primaryColor = window.getComputedStyle(document.documentElement)
-      .getPropertyValue('--mdc-theme-primary')
-      .trim()
-      .replace('#', '');
-    console.log('this._primaryColor', this._primaryColor);
-    this._iconSvg =
-      "data:image/svg+xml;charset=utf-8,%3Csvg width='10' height='5' viewBox='7 10 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23" +
-      this._primaryColor + "' fill-rule='evenodd' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E";
-
+    this._buildIconSvg();
     if (!this.keyForValue) {
       this.keyForValue = 'value';
     }
@@ -69,7 +60,6 @@ class Select extends LitElement {
     let select = new MDCSelect(this.shadowRoot.querySelector('.mdc-select'));
     this._mdcSelect = select;
     select.listen('MDCSelect:change', (e) => {
-      console.log('mdc select change', e);
       this.value = e.detail.value;
     });
   }
@@ -99,7 +89,6 @@ class Select extends LitElement {
     ];
   }
 
-
   render() {
     const classes = {
       'mdc-select--outlined': this.outlined,
@@ -110,35 +99,24 @@ class Select extends LitElement {
     };
     return html `
       <style>
-
         slot {
           display: none;
         }
-
         :host {
           display: inline-block;
         }
-
         .mdc-select {
           width: 100%;
         }
-
         label {
           max-width: calc(100% - 48px);
         }
-
         .mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-floating-label {
           color: var(--mdc-theme-primary) !important;
         }
-
         .mdc-select--focused .mdc-select__dropdown-icon {
           background: url("${this._iconSvg}") no-repeat center !important;
         }
-
-
-
-
-        
       </style>
       <div class="mdc-select ${classMap(classes)}">
         <i class="mdc-select__dropdown-icon"></i>
@@ -196,12 +174,16 @@ class Select extends LitElement {
     }
   }
 
-  disconnectedCallback() {
-    // TODO: remove listener?
-    super.disconnectedCallback();
+  _buildIconSvg() {
+    // TODO: we do this to be able for the element to respect the MDC theme variables
+    this._primaryColor = window.getComputedStyle(document.documentElement)
+      .getPropertyValue('--mdc-theme-primary')
+      .trim()
+      .replace('#', '');
+    this._iconSvg =
+      "data:image/svg+xml;charset=utf-8,%3Csvg width='10' height='5' viewBox='7 10 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23" +
+      this._primaryColor + "' fill-rule='evenodd' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E";
   }
-
-
 
 }
 
