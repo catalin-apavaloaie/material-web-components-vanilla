@@ -17,7 +17,6 @@ import {
 TODO:
 1. consider passing options as argument to the element
 */
-
 class Select extends LitElement {
 
   static get properties() {
@@ -28,10 +27,9 @@ class Select extends LitElement {
       label: {
         type: String,
       },
-      _options: {
+      options: {
         type: Array,
       },
-
       // TODO: implement
       outlined: {
         type: Boolean,
@@ -39,13 +37,17 @@ class Select extends LitElement {
       disabled: {
         type: Boolean,
       },
-
+      keyForLabel: {
+        type: String,
+      },
+      keyForValue: {
+        type: String,
+      },
     }
   }
 
   constructor() {
     super();
-    this._options = [];
     this._primaryColor = window.getComputedStyle(document.documentElement)
       .getPropertyValue('--mdc-theme-primary')
       .trim()
@@ -54,6 +56,39 @@ class Select extends LitElement {
     this._iconSvg =
       "data:image/svg+xml;charset=utf-8,%3Csvg width='10' height='5' viewBox='7 10 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23" +
       this._primaryColor + "' fill-rule='evenodd' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E";
+
+    if (!this.keyForValue) {
+      this.keyForValue = 'value';
+    }
+    if (!this.keyForLabel) {
+      this.keyForLabel = 'label';
+    }
+  }
+
+  firstUpdated() {
+    let select = new MDCSelect(this.shadowRoot.querySelector('.mdc-select'));
+    this._mdcSelect = select;
+    select.listen('MDCSelect:change', (e) => {
+      console.log('mdc select change', e);
+      this.value = e.detail.value;
+    });
+  }
+
+  updated(changes) {
+    if (changes.has('value')) {
+
+      let selected = this.options.find(item => item[this.keyForValue] == this.value);
+      this.dispatchEvent(new CustomEvent('value-updated', {
+        detail: {
+          value: selected ? this.value : undefined,
+          data: selected,
+        }
+      }));
+
+      if (!selected) {
+        this.value = undefined;
+      }
+    }
   }
 
   static get styles() {
@@ -63,7 +98,6 @@ class Select extends LitElement {
       `,
     ];
   }
-
 
 
   render() {
@@ -105,11 +139,10 @@ class Select extends LitElement {
 
 
         
-
       </style>
       <div class="mdc-select ${classMap(classes)}">
         <i class="mdc-select__dropdown-icon"></i>
-        <select class="mdc-select__native-control">
+        <select class="mdc-select__native-control" .value="${this.value}">
           ${this.renderFirstOption()}
           ${this.renderOptionList()}
         </select>
@@ -139,17 +172,18 @@ class Select extends LitElement {
   }
 
   renderFirstOption() {
-    return html `<option value="" .disabled="${this.disabled}" selected></option>`;
+    return html `<option value="" .disabled="${this.disabled}" ?selected="${undefined == this.value}"></option>`;
   }
 
   renderOptionList() {
-    return html `${this._options.map(option => this.renderOption(option))}`;
+    if (!this.options) return;
+    return html `${this.options.map(option => this.renderOption(option))}`;
   }
 
   renderOption(option) {
     return html `
-      <option value="${option.value}">
-        ${option.label}
+      <option value="${option[this.keyForValue]}" ?selected="${this.value == option[this.keyForValue]}">
+        ${option[this.keyForLabel]}
       </option>
     `;
   }
@@ -161,48 +195,6 @@ class Select extends LitElement {
       return html ``;
     }
   }
-
-  // constructor() {
-  //   super();
-  // let slots = this.shadowRoot.querySelectorAll('slot');
-  // console.log(slots);
-  // ?
-  // }
-
-
-  firstUpdated() {
-    let select = new MDCSelect(this.shadowRoot.querySelector('.mdc-select'));
-    this._mdcSelect = select;
-    select.listen('MDCSelect:change', (e) => {
-      console.log(e);
-      this.value = e.detail.value;
-      // TODO: dispatch value/change event?
-    });
-
-
-
-
-    let slot = this.shadowRoot.querySelector('slot');
-    this.setSlotOptions(slot);
-    slot.addEventListener('slotchange', (e) => {
-      this.setSlotOptions(slot);
-    });
-  }
-
-  setSlotOptions(slot) {
-    let options = slot.assignedElements ? slot.assignedElements() : slot.assignedNodes()
-      .filter(node => {
-        return node.nodeType == Node.ELEMENT_NODE;
-      });
-    this._options = options
-      .map((element) => {
-        return {
-          value: element.value,
-          label: element.innerHTML,
-        };
-      });
-  }
-
 
   disconnectedCallback() {
     // TODO: remove listener?
