@@ -36,12 +36,9 @@ class Select extends LitElement {
       keyForValue: {
         type: String,
       },
-
-      // TODO: implement
       disabled: {
         type: Boolean,
       },
-
     }
   }
 
@@ -92,7 +89,7 @@ class Select extends LitElement {
   render() {
     const classes = {
       'mdc-select--outlined': this.outlined,
-      // 'mdc-checkbox--disabled': this.disabled,
+      'mdc-select--disabled': this.disabled,
       // 'mdc-card--raised': this.raised,
       // 'mdc-button--unelevated': this.unelevated,
       // 'mdc-button--dense': this.dense,
@@ -120,7 +117,7 @@ class Select extends LitElement {
       </style>
       <div class="mdc-select ${classMap(classes)}">
         <i class="mdc-select__dropdown-icon"></i>
-        <select class="mdc-select__native-control" .value="${this.value}">
+        <select class="mdc-select__native-control" .value="${this.value}" ?disabled="${this.disabled}">
           ${this.renderFirstOption()}
           ${this.renderOptionList()}
         </select>

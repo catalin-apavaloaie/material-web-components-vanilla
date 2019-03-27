@@ -72,11 +72,36 @@ class DemoApp extends LitElement {
         .options="${[{uuid: "grains", name: "Breadz", isNice: true}, {uuid: "vegetables", name: "Vegetables", isNice: false}, {uuid: "fruit", name: "Fruit", isNice: undefined}]}">
       </mdwc-select>
 
+      <mdwc-select
+        disabled
+        label="What do you want?"
+        @change="${this._handleChange}" 
+        @input="${this._handleInput}"
+        @value-updated="${this._handleValueUpdated}"
+        .options="${[{value: "grains", label: "Bread"}, {value: "vegetables", label: "Vegetables"}, {value: "fruit", label: "Fruit"}]}">
+      </mdwc-select>
+
+      <mdwc-select id="select-disabled-outlined" outlined
+        disabled
+        label="Disabled option that will be enabled after 2 seconds." 
+        @change="${this._handleChange}" 
+        @input="${this._handleInput}"
+        @value-updated="${this._handleValueUpdated}"
+        keyForValue="uuid"
+        keyForLabel="name"
+        value="somethingnotinthelist"
+        .options="${[{uuid: "grains", name: "Breadz", isNice: true}, {uuid: "vegetables", name: "Vegetables", isNice: false}, {uuid: "fruit", name: "Fruit", isNice: undefined}]}">
+      </mdwc-select>
+
+
     `;
   }
 
   firstUpdated() {
-    // this._appendOptionToSelect('select1');
+    window.setTimeout(() => {
+      this.shadowRoot.getElementById('select-disabled-outlined')
+        .disabled = false;
+    }, 2000);
   }
 
   _appendOptionToSelect(selectId) {
