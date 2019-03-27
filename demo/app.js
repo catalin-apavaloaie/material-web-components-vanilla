@@ -72,6 +72,26 @@ class DemoApp extends LitElement {
         .options="${[{uuid: "grains", name: "Breadz", isNice: true}, {uuid: "vegetables", name: "Vegetables", isNice: false}, {uuid: "fruit", name: "Fruit", isNice: undefined}]}">
       </mdwc-select>
 
+      <mdwc-select 
+        label="What do you want?"
+        @change="${this._handleChange}" 
+        @input="${this._handleInput}"
+        @value-updated="${this._handleValueUpdated}"
+        value="vegetables"
+        .options="${[{value: "grains", label: "Bread"}, {value: "vegetables", label: "Vegetables"}, {value: "fruit", label: "Fruit"}]}">
+      </mdwc-select>
+
+      <mdwc-select outlined 
+        label="Super long long super label something!" 
+        @change="${this._handleChange}" 
+        @input="${this._handleInput}"
+        @value-updated="${this._handleValueUpdated}"
+        keyForValue="uuid"
+        keyForLabel="name"
+        value="fruit"
+        .options="${[{uuid: "grains", name: "Breadz", isNice: true}, {uuid: "vegetables", name: "Vegetables", isNice: false}, {uuid: "fruit", name: "Fruit", isNice: undefined}]}">
+      </mdwc-select>
+
       <mdwc-select
         disabled
         label="What do you want?"
