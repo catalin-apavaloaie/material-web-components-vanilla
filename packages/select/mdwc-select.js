@@ -45,6 +45,7 @@ class Select extends LitElement {
   constructor() {
     super();
     this._buildIconSvg();
+    this._addObserverForLayoutRetrigger();
     if (!this.keyForValue) {
       this.keyForValue = 'value';
     }
@@ -73,9 +74,11 @@ class Select extends LitElement {
       }));
 
       if (!selected) {
-        this.value = undefined;
+        this.value = '';
+        this._mdcSelect.value = this.value;
       }
     }
+
   }
 
   static get styles() {
@@ -180,6 +183,19 @@ class Select extends LitElement {
     this._iconSvg =
       "data:image/svg+xml;charset=utf-8,%3Csvg width='10' height='5' viewBox='7 10 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23" +
       this._primaryColor + "' fill-rule='evenodd' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E";
+  }
+
+  _addObserverForLayoutRetrigger() {
+    // https://github.com/material-components/material-components-web/issues/4328
+    let callback = () => {
+      this._updateLayout();
+    }
+    let observer = new IntersectionObserver(callback, {});
+    observer.observe(this);
+  }
+
+  _updateLayout() {
+    this._mdcSelect.layout();
   }
 
 }

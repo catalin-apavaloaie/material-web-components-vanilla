@@ -1,0 +1,3 @@
+# Compatibility
+
+Due to a [bug in @material/select](https://github.com/material-components/material-components-web/issues/4328) the element relyes on the [IntersectionObserver](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API). If you plan to support browsers that does not implement it nativly (i.e IE11, Safari), you need to use the [Polyfill](https://github.com/w3c/IntersectionObserver).
