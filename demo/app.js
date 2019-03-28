@@ -39,7 +39,35 @@ class DemoApp extends LitElement {
 
       <mdwc-card><h1>Normal</h1></mdwc-card>
       <mdwc-card raised><h1>Raised</h1></mdwc-card>
-      <mdwc-checkbox disabled></mdwc-checkbox>
+
+      <hr>
+      <div style="width: 49%; float: left">
+        <input type="checkbox" @change="${this._handleChange}" @input="${this._handleInput}" value="something" >
+      </div>
+      <div style="width: 49%; float: left">
+        <mdwc-checkbox @value-changed="${this._handleValueUpdated}"  ></mdwc-checkbox>
+      </div>
+      <div style="clear: both;"></div>
+
+      <hr>
+      <div style="width: 49%; float: left">
+        <input type="checkbox" checked @change="${this._handleChange}" @input="${this._handleInput}" >
+      </div>
+      <div style="width: 49%; float: left">
+        <mdwc-checkbox checked @value-changed="${this._handleValueUpdated}" value="On" ></mdwc-checkbox>
+      </div>
+      <div style="clear: both;"></div>
+
+      <hr>
+      <div style="width: 49%; float: left">
+        <input type="checkbox" disabled @change="${this._handleChange}" @input="${this._handleInput}">
+      </div>
+      <div style="width: 49%; float: left">
+        <mdwc-checkbox disabled @value-changed="${this._handleValueUpdated}" value="On"></mdwc-checkbox>
+      </div>
+
+      <div style="clear: both;"></div>
+      <hr>
 
       <select>
       <option value="grains">
@@ -184,6 +212,7 @@ class DemoApp extends LitElement {
   _handleValueUpdated(e) {
     console.log('_handleValueUpdated', e, e.detail, e.currentTarget);
   }
+
 
   _nativeFormSubmit(e) {
     e.preventDefault();

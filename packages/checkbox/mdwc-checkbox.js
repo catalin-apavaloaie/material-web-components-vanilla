@@ -23,6 +23,9 @@ class Checkbox extends LitElement {
       checked: {
         type: Boolean,
       },
+      value: {
+        type: String,
+      },
     }
   }
 
@@ -35,6 +38,11 @@ class Checkbox extends LitElement {
       //   }
       // `,
     ];
+  }
+
+  constructor() {
+    super();
+    this.value = 'on';
   }
 
   render() {
@@ -65,31 +73,28 @@ class Checkbox extends LitElement {
   }
 
   firstUpdated() {
-    this._mdcCheckbox = new MDCCheckbox(this.shadowRoot.querySelector('.mdc-checkbox'));
+    let checkbox = this.shadowRoot.querySelector('.mdc-checkbox');
+    this._mdcCheckbox = new MDCCheckbox(checkbox);
     this._mdcCheckbox.disabled = this.disabled;
-    this.addEventListener('input', this._handleInputEvent, true);
+    checkbox.addEventListener('input', this._handleInputEvent.bind(this));
   }
 
   _handleInputEvent(e) {
-    console.log(e.path[0].checked);
-    this.checked = e.path[0].checked;
-
-    // debugger;
+    this.checked = e.target.checked;
+    console.log('_handleInputEvent', this.checked);
   }
 
-  _handleChange(e) {
-    // let event = new Event('change', {
-    //   bubbles: true,
-    //   composed: true,
-    //   // cancelable: false,
-    // });
-    // this.dispatchEvent(event);
-    // console.log('DOLPHIN _handleChange', e, e.currentTarget);
-  }
-
-  _handleInput(e) {
-    // this.dispatchEvent(e);
-    // console.log('DOLPHIN _handleInput', e, e.currentTarget);
+  updated(changes) {
+    if (changes.has('checked')) {
+      console.log('changed flag', this.checked);
+      this._mdcCheckbox.checked = this.checked;
+      this.dispatchEvent(new CustomEvent('value-changed', {
+        detail: {
+          checked: this.checked,
+          value: this.value,
+        }
+      }));
+    }
   }
 
 }
