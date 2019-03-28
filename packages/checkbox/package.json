@@ -1,6 +1,6 @@
 {
   "name": "@dolphin-kiss/material-wc-checkbox",
-  "version": "1.0.7",
+  "version": "1.0.1",
   "description": "LitElement Material design checkbox written using javascript vanilla approach",
   "main": "mdwc-checkbox.js",
   "scripts": {
