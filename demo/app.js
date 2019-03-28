@@ -53,6 +53,8 @@ class DemoApp extends LitElement {
         </option>
       </select>
 
+      <hr>
+
       <mdwc-select 
         label="What do you want?"
         @change="${this._handleChange}" 
@@ -61,21 +63,7 @@ class DemoApp extends LitElement {
         .options="${[{value: "grains", label: "Bread"}, {value: "vegetables", label: "Vegetables"}, {value: "fruit", label: "Fruit"}]}">
       </mdwc-select>
 
-      <span @click="${() => this._runVisibilityToggle = !this._runVisibilityToggle}">
-        ${this._runVisibilityToggle ? html `Pause` : html `Start`}
-      </span>
-      <mdwc-select outlined 
-        label="OUTLINED AND PRESELECTED" 
-        id="hiddenOne"
-        style="display: none"
-        @change="${this._handleChange}" 
-        @input="${this._handleInput}"
-        @value-updated="${this._handleValueUpdated}"
-        keyForValue="uuid"
-        keyForLabel="name"
-        value="vegetables"
-        .options="${[{uuid: "grains", name: "Breadz", isNice: true}, {uuid: "vegetables", name: "Vegetables", isNice: false}, {uuid: "fruit", name: "Fruit", isNice: undefined}]}">
-      </mdwc-select>
+      <hr>
 
       <mdwc-select 
         label="What do you want?"
@@ -85,6 +73,8 @@ class DemoApp extends LitElement {
         value="vegetables"
         .options="${[{value: "grains", label: "Bread"}, {value: "vegetables", label: "Vegetables"}, {value: "fruit", label: "Fruit"}]}">
       </mdwc-select>
+
+      <hr>
 
       <mdwc-select outlined 
         label="Super long long super label something!" 
@@ -97,6 +87,8 @@ class DemoApp extends LitElement {
         .options="${[{uuid: "grains", name: "Breadz", isNice: true}, {uuid: "vegetables", name: "Vegetables", isNice: false}, {uuid: "fruit", name: "Fruit", isNice: undefined}]}">
       </mdwc-select>
 
+      <hr>
+
       <mdwc-select
         disabled
         label="What do you want?"
@@ -105,6 +97,8 @@ class DemoApp extends LitElement {
         @value-updated="${this._handleValueUpdated}"
         .options="${[{value: "grains", label: "Bread"}, {value: "vegetables", label: "Vegetables"}, {value: "fruit", label: "Fruit"}]}">
       </mdwc-select>
+
+      <hr>
 
       <mdwc-select id="select-disabled-outlined" outlined
         disabled
@@ -117,6 +111,27 @@ class DemoApp extends LitElement {
         value="somethingnotinthelist"
         .options="${[{uuid: "grains", name: "Breadz", isNice: true}, {uuid: "vegetables", name: "Vegetables", isNice: false}, {uuid: "fruit", name: "Fruit", isNice: undefined}]}">
       </mdwc-select>
+
+      <hr>
+
+      <span @click="${() => this._runVisibilityToggle = !this._runVisibilityToggle}">
+        ${this._runVisibilityToggle ? html `Pause` : html `Start`}
+      </span>
+
+      <hr>
+
+      <div id="hiddenOne" style="display: none;">
+        <mdwc-select outlined pjotr
+          label="OUTLINED AND PRESELECTED" 
+          @change="${this._handleChange}" 
+          @input="${this._handleInput}"
+          @value-updated="${this._handleValueUpdated}"
+          keyForValue="uuid"
+          keyForLabel="name"
+          value="vegetables"
+          .options="${[{uuid: "grains", name: "Breadz", isNice: true}, {uuid: "vegetables", name: "Vegetables", isNice: false}, {uuid: "fruit", name: "Fruit", isNice: undefined}]}">
+        </mdwc-select>
+      </div>
 
 
     `;
