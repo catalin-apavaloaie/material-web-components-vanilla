@@ -81,12 +81,10 @@ class Checkbox extends LitElement {
 
   _handleInputEvent(e) {
     this.checked = e.target.checked;
-    console.log('_handleInputEvent', this.checked);
   }
 
   updated(changes) {
     if (changes.has('checked')) {
-      console.log('changed flag', this.checked);
       this._mdcCheckbox.checked = this.checked;
       this.dispatchEvent(new CustomEvent('value-changed', {
         detail: {
