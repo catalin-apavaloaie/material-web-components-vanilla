@@ -61,14 +61,19 @@ class DemoApp extends LitElement {
         .options="${[{value: "grains", label: "Bread"}, {value: "vegetables", label: "Vegetables"}, {value: "fruit", label: "Fruit"}]}">
       </mdwc-select>
 
+      <span @click="${() => this._runVisibilityToggle = !this._runVisibilityToggle}">
+        ${this._runVisibilityToggle ? html `Pause` : html `Start`}
+      </span>
       <mdwc-select outlined 
-        label="Super long long super label something!" 
+        label="OUTLINED AND PRESELECTED" 
+        id="hiddenOne"
+        style="display: none"
         @change="${this._handleChange}" 
         @input="${this._handleInput}"
         @value-updated="${this._handleValueUpdated}"
         keyForValue="uuid"
         keyForLabel="name"
-        value="somethingnotinthelist"
+        value="vegetables"
         .options="${[{uuid: "grains", name: "Breadz", isNice: true}, {uuid: "vegetables", name: "Vegetables", isNice: false}, {uuid: "fruit", name: "Fruit", isNice: undefined}]}">
       </mdwc-select>
 
@@ -97,10 +102,28 @@ class DemoApp extends LitElement {
     `;
   }
 
+  static get properties() {
+    return {
+      _runVisibilityToggle: {
+        type: Boolean,
+      },
+    };
+  }
+
   firstUpdated() {
     window.setTimeout(() => {
       this.shadowRoot.getElementById('select-disabled-outlined')
         .disabled = false;
+    }, 2000);
+    setInterval(() => {
+      if (this._runVisibilityToggle) {
+        let hiddenOne = this.shadowRoot.getElementById('hiddenOne');
+        if (hiddenOne.style.display == 'none') {
+          hiddenOne.style.display = '';
+        } else {
+          hiddenOne.style.display = 'none';
+        }
+      }
     }, 2000);
   }
 
