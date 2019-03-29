@@ -164,7 +164,7 @@ class DemoApp extends LitElement {
 
       <hr>
 
-      <mdwc-textfield></mdwc-textfield>
+      <mdwc-textfield .label="${"Provided label"}" .value="${"Provided value"}" outlined @changed="${this._handleTexfieldValueChanged}"></mdwc-textfield>
     `;
   }
 
@@ -213,6 +213,10 @@ class DemoApp extends LitElement {
   }
 
   _handleValueUpdated(e) {
+    console.log('_handleValueUpdated', e, e.detail, e.currentTarget);
+  }
+
+  _handleTexfieldValueChanged(e) {
     console.log('_handleValueUpdated', e, e.detail, e.currentTarget);
   }
 
