@@ -1,0 +1,26 @@
+{
+  "name": "@dolphin-kiss/material-wc-textfield",
+  "version": "1.0.0",
+  "description": "LitElement Material design textfield written using javascript vanilla approach",
+  "main": "mdwc-textfield.js",
+  "scripts": {
+    "test": "echo 1"
+  },
+  "author": "Peter Lauri",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dolphinkiss/material-web-components-vanilla.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dolphinkiss/material-web-components-vanilla/issues"
+  },
+  "homepage": "https://github.com/dolphinkiss/material-web-components-vanilla#readme",
+  "dependencies": {
+    "@material/textfield": "^1.1.0",
+    "lit-element": "^2.1.0"
+  }
+}
