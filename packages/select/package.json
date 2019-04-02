@@ -1,6 +1,6 @@
 {
   "name": "@dolphin-kiss/material-wc-select",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "LitElement Material design select written using javascript vanilla approach",
   "main": "mdwc-select.js",
   "scripts": {
