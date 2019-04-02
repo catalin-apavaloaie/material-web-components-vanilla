@@ -93,6 +93,7 @@ class Select extends LitElement {
     const classes = {
       'mdc-select--outlined': this.outlined,
       'mdc-select--disabled': this.disabled,
+      'mdc-select--no-label': !this.label,
       // 'mdc-card--raised': this.raised,
       // 'mdc-button--unelevated': this.unelevated,
       // 'mdc-button--dense': this.dense,
@@ -137,7 +138,9 @@ class Select extends LitElement {
         <div class="mdc-notched-outline">
           <div class="mdc-notched-outline__leading"></div>
           <div class="mdc-notched-outline__notch">
+            ${this.label ? html `
             <label class="mdc-floating-label">${this.label}</label>
+            ` : ''}
           </div>
           <div class="mdc-notched-outline__trailing"></div>
         </div>
