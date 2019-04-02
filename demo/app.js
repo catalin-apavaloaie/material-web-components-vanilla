@@ -7,6 +7,7 @@ import '@dolphin-kiss/material-wc-button';
 import '@dolphin-kiss/material-wc-card';
 import '@dolphin-kiss/material-wc-checkbox';
 import '@dolphin-kiss/material-wc-select';
+import '@dolphin-kiss/material-wc-textfield';
 
 class DemoApp extends LitElement {
   render() {
@@ -161,7 +162,9 @@ class DemoApp extends LitElement {
         </mdwc-select>
       </div>
 
+      <hr>
 
+      <mdwc-textfield .label="${"Provided label"}" .value="${"Provided value"}" outlined @changed="${this._handleTexfieldValueChanged}"></mdwc-textfield>
     `;
   }
 
@@ -210,6 +213,10 @@ class DemoApp extends LitElement {
   }
 
   _handleValueUpdated(e) {
+    console.log('_handleValueUpdated', e, e.detail, e.currentTarget);
+  }
+
+  _handleTexfieldValueChanged(e) {
     console.log('_handleValueUpdated', e, e.detail, e.currentTarget);
   }
 
