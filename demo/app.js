@@ -163,8 +163,69 @@ class DemoApp extends LitElement {
       </div>
 
       <hr>
+      <h3>Textfields start here</h3>
+      <hr>
 
-      <mdwc-textfield .label="${"Provided label"}" .value="${"Provided value"}" outlined @changed="${this._handleTexfieldValueChanged}"></mdwc-textfield>
+      <span @click="${(e) => {this.shadowRoot.getElementById('hiddenInputContainer').style.display = ''; e.currentTarget.style.display = 'none'; }}">Show a hidden input</span>
+      <div style="display: none;" id="hiddenInputContainer">
+        <mdwc-textfield 
+          label="Toggle display input"
+          outlined
+          value="Something"
+          @value-updated="${this._handleValueUpdated}"></mdwc-textfield>
+      </div>
+
+      <hr>
+
+      <mdwc-textfield 
+        value="Something"
+        label="Plain input"
+        @value-updated="${this._handleValueUpdated}"></mdwc-textfield>
+
+      <hr>
+
+      <mdwc-textfield 
+        .label="${"Provided label"}" 
+        outlined 
+        helperText="Ceva"
+        required
+        pattern="^[0-9]{4,}$"
+        @value-updated="${this._handleTextValueUpdated}"></mdwc-textfield>
+
+      <hr>
+
+      <mdwc-textfield 
+        .label="${"Provided label"}" 
+        .value="${4}" 
+        type="number" 
+        outlined 
+        @value-updated="${this._handleValueUpdated}"></mdwc-textfield>
+
+      <hr>
+
+      <mdwc-textfield 
+        .label="${"Provided label"}" 
+        .value="${new Date()}" 
+        type="date" 
+        outlined 
+        @value-updated="${this._handleValueUpdated}"></mdwc-textfield>
+
+      <hr>
+
+      <mdwc-textfield 
+        .label="${"Provided label"}" 
+        .value="${"Provided value"}" 
+        type="textarea"  
+        @value-updated="${this._handleValueUpdated}"></mdwc-textfield>
+
+      <hr>
+
+      <mdwc-textfield 
+        type="textarea" 
+        outlined 
+        required
+        helperText="This is required"
+        @value-updated="${this._handleValueUpdated}"></mdwc-textfield>
     `;
   }
 
@@ -227,6 +288,16 @@ class DemoApp extends LitElement {
     console.log(Array.from(formData.keys()));
     console.log(Array.from(formData.values()));
   }
+
+  _handleTextValueUpdated(event) {
+    this._handleValueUpdated(event);
+    if (event.currentTarget.required && !event.currentTarget.value) {
+      //keep default
+    } else if (event.currentTarget.pattern && event.currentTarget.validity.patternMismatch) {
+      event.currentTarget.setCustomValidity("Digits only, minimum 4");
+    }
+  }
+
 }
 
 window.customElements.define('demo-app', DemoApp);
