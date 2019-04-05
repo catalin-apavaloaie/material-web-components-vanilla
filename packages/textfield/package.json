@@ -1,6 +1,6 @@
 {
   "name": "@dolphin-kiss/material-wc-textfield",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "LitElement Material design textfield written using javascript vanilla approach",
   "main": "mdwc-textfield.js",
   "scripts": {
