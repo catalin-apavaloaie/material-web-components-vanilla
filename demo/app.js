@@ -295,6 +295,8 @@ class DemoApp extends LitElement {
       //keep default
     } else if (event.currentTarget.pattern && event.currentTarget.validity.patternMismatch) {
       event.currentTarget.setCustomValidity("Digits only, minimum 4");
+    } else {
+      event.currentTarget.setCustomValidity("");
     }
   }
 

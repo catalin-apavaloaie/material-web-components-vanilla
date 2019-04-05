@@ -24,6 +24,9 @@ class Textfield extends LitElement {
       value: {
         type: String,
       },
+      name: {
+        type: String,
+      },
       disabled: {
         type: Boolean,
       },
@@ -47,6 +50,12 @@ class Textfield extends LitElement {
       },
       validity: {
         type: Object,
+      },
+      rows: {
+        type: Number,
+      },
+      cols: {
+        type: Number,
       },
     }
   }
@@ -98,9 +107,16 @@ class Textfield extends LitElement {
     return [
       materialCss,
       css `
-      .mdc-text-field {
-        width: 100%;
-      }
+        .mdc-text-field {
+          width: 100%;
+        }
+        :host {
+          display: block;
+          margin-bottom: 16px;
+        }
+        .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+          color: var(--mdc-theme-primary) !important;
+        }
       `,
     ];
   }
@@ -111,6 +127,7 @@ class Textfield extends LitElement {
       'mdc-text-field--disabled': this.disabled,
       'mdc-text-field--textarea': this.type == 'textarea',
       'mdc-text-field--no-label': !this.label,
+      'mdc-text-field--invalid': !!this.validationMessage,
     };
 
     return html `
@@ -155,8 +172,8 @@ class Textfield extends LitElement {
         <textarea 
           id="mdwc-text-field" 
           class="mdc-text-field__input" 
-          rows="8" 
-          cols="40" 
+          rows="${this.rows}" 
+          cols="${this.cols}" 
           @input="${this.valueChanged}"
           @blur="${this._setValidation}"
           ?required="${this.required}"
@@ -191,6 +208,8 @@ class Textfield extends LitElement {
 
   setCustomValidity(message) {
     this.validationMessage = message;
+    let field = this.shadowRoot.getElementById('mdwc-text-field');
+    field.setCustomValidity(message);
   }
 
 }
