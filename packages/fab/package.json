@@ -1,0 +1,26 @@
+{
+  "name": "@dolphin-kiss/material-wc-fab",
+  "version": "1.0.0",
+  "description": "LitElement Material design FAB written using javascript vanilla approach",
+  "main": "mdwc-fab.js",
+  "scripts": {
+    "test": "echo 1"
+  },
+  "author": "Peter Lauri",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@material/fab": "^0.3.6",
+    "lit-element": "^2.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dolphinkiss/material-web-components-vanilla.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dolphinkiss/material-web-components-vanilla/issues"
+  },
+  "homepage": "https://github.com/dolphinkiss/material-web-components-vanilla#readme"
+}

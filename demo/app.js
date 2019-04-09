@@ -8,6 +8,7 @@ import '@dolphin-kiss/material-wc-card';
 import '@dolphin-kiss/material-wc-checkbox';
 import '@dolphin-kiss/material-wc-select';
 import '@dolphin-kiss/material-wc-textfield';
+import '@dolphin-kiss/material-wc-fab';
 
 class DemoApp extends LitElement {
   render() {
@@ -24,6 +25,12 @@ class DemoApp extends LitElement {
 
         select {
           width: 100px;
+        }
+
+        .fab {
+          position: fixed;
+          bottom: 1rem;
+          right: 1rem;
         }
 
 
@@ -226,6 +233,10 @@ class DemoApp extends LitElement {
         required
         helperText="This is required"
         @value-updated="${this._handleValueUpdated}"></mdwc-textfield>
+
+        <hr>
+
+        <mdwc-fab icon="favorite" class="fab"></mdwc-fab>
     `;
   }
 
