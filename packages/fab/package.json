@@ -12,7 +12,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@material/fab": "^0.3.6",
+    "@material/fab": "^1.1.1",
     "lit-element": "^2.0.1"
   },
   "repository": {
