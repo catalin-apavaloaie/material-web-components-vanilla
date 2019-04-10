@@ -57,9 +57,10 @@ class Fab extends LitElement {
       'mdc-fab--mini': this.mini,
       'mdc-fab--exited': this.exited,
     };
+    const mdcIcon = html`<span class="mdc-fab__icon material-icons">${this.icon}</span>`
     return html `
       <button class="mdc-fab ${classMap(classes)}" .disabled="${this.disabled}">
-        ${this.renderIcon()}
+        ${mdcIcon}
         ${this.renderLabel()}
       </button>
     `;
@@ -67,15 +68,15 @@ class Fab extends LitElement {
 
   renderLabel() {
     if (this.label) {
-      return html `<span class="mdc-fab__label"><slot></slot></span>`;
+      return html `<span class="mdc-fab__label">${this.label}</span>`;
     }
   }
 
-  renderIcon() {
-    if (this.icon) {
-      return html `<span class="mdc-fab__icon material-icons"><slot></slot></span>`;
-    }
-  }
+  // renderIcon() {
+  //   if (this.icon) {
+  //     return html `<span class="mdc-fab__icon material-icons">${this.icon}</span>`;
+  //   }
+  // }
 
   firstUpdated() {
     if (this.ripple) {
